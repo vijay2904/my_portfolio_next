@@ -1,4 +1,10 @@
 {
+    
+    "LocaleSwitcher": {
+        "label": "Change language",
+        "locale": "{locale, select, jp {JP} en {EN} other {Unknown}}"
+    },
+    
     "NavLinks": {
         "Blogs": "Blogs",
         "Projects": "Projects",
@@ -12,7 +18,17 @@
     },
 
     "LocaleLayout": {
-        "title": "next-intl example"
+        "title": "Vijay Rohit"
+    },
+
+    "RecentPosts": {
+        "title": "Recent Posts",
+        "all_posts": "All Posts"
+    },
+
+    "RecentProjects": {
+        "title": "Recent Projects",
+        "all_projects": "All Projects"
     }
 
 }

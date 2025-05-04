@@ -9,13 +9,16 @@ export const routing = defineRouting({
       jp: '/ブログ'
     },
     '/projects': {
-      jp: '/projects'
+      jp: '/プロジェクト'
     },
     '/contact': {
-      jp: '/contact'
+      jp: '/連絡先'
     },
     '/posts/[slug]': {
       jp: '/ブログ/[slug]'
+    },
+    '/projects/[slug]': {
+      jp: '/プロジェクト/[slug]'
     },
   }
 });

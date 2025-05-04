@@ -3,13 +3,19 @@ import Image from 'next/image'
 
 import { ProjectMetadata } from '@/lib/projects'
 import { formatDate } from '@/lib/utils'
+import NavigationLink from './NavigationLink';
 
 export default function Projects({ projects }: { projects: ProjectMetadata[] }) {
   return (
     <ul className='grid grid-cols-1 gap-8 sm:grid-cols-2'>
       {projects.map(project => (
         <li key={project.slug} className='group relative'>
-          <Link href={`/projects/${project.slug}`}>
+          <NavigationLink
+                href={{
+                    pathname: '/projects/[slug]',
+                    params: { slug: project.slug }
+                }}
+            >
             {project.image && (
               <div className='rounded-lg h-72 w-full overflow-hidden bg-muted sm:h-50'>
                 <Image
@@ -35,7 +41,7 @@ export default function Projects({ projects }: { projects: ProjectMetadata[] }) 
                 {formatDate(project.publishedAt ?? '')}
               </p>
             </div>
-          </Link>
+          </NavigationLink>
         </li>
       ))}
     </ul>

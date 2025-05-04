@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
+import NavigationLink from '@/components/NavigationLink'
 
 export default function NotFound() {
   return (
@@ -20,13 +21,13 @@ export default function NotFound() {
                 </p>
               </div>
               <div className='mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6'>
-                <Link
+                <NavigationLink
                   href='/'
                   className='inline-flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground'
                 >
                   <ArrowLeftIcon className='h-5 w-5' />
                   <span>Go back home</span>
-                </Link>
+                </NavigationLink>
               </div>
             </div>
           </main>

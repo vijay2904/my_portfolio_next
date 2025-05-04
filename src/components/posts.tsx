@@ -1,14 +1,8 @@
 import Link from 'next/link'
 
-import { PostMetadata } from '@/lib/posts'
-import { formatDate } from '@/lib/utils'
-import { Locale } from 'next-intl';
+import { PostMetadata } from '@/lib/posts';
+import { formatDate } from '@/lib/utils';
 import NavigationLink from './NavigationLink';
-
-type Props = {
-    posts: PostMetadata[];
-    params: Promise<{locale: Locale}>;
-  };
 
 export default function Posts({posts}: {posts: PostMetadata[]}) {
   return (

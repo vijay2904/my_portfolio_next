@@ -1,4 +1,9 @@
 {
+    "LocaleSwitcher": {
+        "label": "言語を変更",
+        "locale": "{locale, select, jp {JP} en {EN} other {Unknown}}"
+    },
+
     "NavLinks": {
         "Blogs": "ブログ",
         "Projects": "プロジェクト",
@@ -12,6 +17,17 @@
     },
 
     "LocaleLayout": {
-        "title": "next-intl example"
+        "title": "ビジャイ・ロヒット"
+    },
+
+    "RecentPosts": {
+        "title": "最近のブログ",
+        "all_posts": "すべてのブログ"
+    },
+
+    "RecentProjects": {
+        "title": "最近のプロジェクト",
+        "all_projects": "すべてのプロジェクト"
     }
+
 }

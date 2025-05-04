@@ -10,6 +10,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import {routing} from '@/i18n/routing';
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
+import Chatbot from "@/components/chatbot";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -80,6 +81,7 @@ export default async function RootLayout({
               <Header />
                 <main className='grow'>{children}</main>
               <Footer />
+              <Chatbot />
             </Providers>
         </NextIntlClientProvider>
         
