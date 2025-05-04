@@ -1,0 +1,18 @@
+{
+    "NavLinks": {
+        "Blogs": "Blogs",
+        "Projects": "Projects",
+        "Contact": "Contact"
+    },
+
+    "Homepage": {
+        "title": "Hey, I'm",
+        "my_name": "Vijay Rohit Kanchusthambham",
+        "about_me": "I am a professional software engineer based in Hyderabad, India. I have a passion for building web applications and have experience in various technologies including React, Node.js, and Next.js. I am always eager to learn new skills and take on new challenges."        
+    },
+
+    "LocaleLayout": {
+        "title": "next-intl example"
+    }
+
+}

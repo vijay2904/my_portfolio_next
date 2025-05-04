@@ -1,11 +1,21 @@
 import PostsWithSearch from '@/components/posts-with-search';
 import { getPosts } from '@/lib/posts';
-import React from 'react';
+import { Locale } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import React, { use } from 'react';
 
-// export default async function PostsPage() {
-export default async function PostsPageDuplicate() {
+type Props = {
+    params: Locale;
+};
 
+export default async function PostsPage({params}: Props) {
     const posts = await getPosts();
+
+    const locale = params;
+
+    // Enable static rendering
+    setRequestLocale(locale);
+  
     
     return (
         <section className='pb-24 pt-40'>
