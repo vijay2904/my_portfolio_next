@@ -78,8 +78,6 @@ export default function Chatbot() {
     
             convHistory.push(question);
             convHistory.push(data.response);
-    
-            console.log('Conversation History:', convHistory);
 
             if(response === undefined || response === null) {
                 newAiSpeechBubble.textContent = "Something went wrong. Please email me at kvijayrohit@gmail.com";

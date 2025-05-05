@@ -1,11 +1,14 @@
-import type { NextConfig } from "next";
-
 import createNextIntlPlugn from 'next-intl/plugin';
+import webpack, { Configuration } from 'webpack';
+import dotenv from 'dotenv';
+import { NextConfig } from 'next';
+
 
 const withNextIntl = createNextIntlPlugn();
 
 const nextConfig: NextConfig = {
   /* config options here */
+  reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -18,4 +21,14 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+const { parsed: myEnv } = dotenv.config({path: '/'});
+
+module.exports = {
+  webpack: (config: Configuration) => {
+    config.plugins?.push(new webpack.EnvironmentPlugin(myEnv || {}));
+    return config;
+  },
+};
+
+
+module.exports = withNextIntl(nextConfig);
