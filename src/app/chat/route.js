@@ -7,6 +7,7 @@ export async function GET() {
 
 export async function POST(req) {
     try {
+        console.log("Hi");
         const data = await req.json();
         const { question, convHistory } = data; // Get the question from the request body
         if (!question) {
