@@ -30,9 +30,9 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
         });
 
         // Retrieve environment variables
-        const sbApiKey = process.env.SB_API_KEY;
-        const sbApiUrl = process.env.SB_API_URL;
-        const openAIApiKey = process.env.OPENAI_API_KEY;
+        const sbApiKey = process.env.NEXT_PUBLIC_SB_API_KEY;
+        const sbApiUrl = process.env.NEXT_PUBLIC_SB_API_URL;
+        const openAIApiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
 
         if (!sbApiKey || !sbApiUrl || !openAIApiKey) {
             throw new Error("Missing required environment variables: SB_API_KEY, SB_API_URL, or OPENAI_API_KEY");

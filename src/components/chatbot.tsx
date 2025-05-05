@@ -4,6 +4,8 @@ import { ChatBubbleIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { ChatForm } from "./chatform";
 import { usePathname } from "next/navigation";
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default function Chatbot() {
     const [chatOpen, setChatOpen] = useState(false);
@@ -66,7 +68,7 @@ export default function Chatbot() {
         `;
 
         try {
-            const response = await fetch('http://localhost:3000/chat', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MY_WEBSITE_URL}/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({question : question, convHistory: formatConvHistory(convHistory)}),
