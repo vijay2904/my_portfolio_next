@@ -1,19 +1,10 @@
 import PostsWithSearch from '@/components/posts-with-search';
 import { getPosts } from '@/lib/posts';
-import { Locale } from 'next-intl';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
-type Props = {
-    params: Locale;
-};
-
-export default async function PostsPage({params}: Props) {
+export default async function PostsPage() {
     const posts = await getPosts();
-
-    const locale = params;
-
-    setRequestLocale(locale);
   
     const t = await getTranslations("PostsPage");
     
