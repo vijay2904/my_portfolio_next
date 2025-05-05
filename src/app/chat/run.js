@@ -33,6 +33,7 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
         const sbApiKey = process.env.SB_API_KEY;
         const sbApiUrl = process.env.SB_API_URL;
         const openAIApiKey = process.env.OPENAI_API_KEY;
+        console.log(sbApiKey)
 
         if (!sbApiKey || !sbApiUrl || !openAIApiKey) {
             throw new Error("Missing required environment variables: SB_API_KEY, SB_API_URL, or OPENAI_API_KEY");
@@ -102,6 +103,7 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
             question: questionFromChat,
             conv_history: convHistoryFromChat,
         });
+        console.log(response)
         return response;
     } catch (error) {
         return "Something went wrong. Please email me at kvijayrohit@gmail.com";
