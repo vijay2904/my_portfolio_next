@@ -15,13 +15,13 @@ export async function generateStaticParams() {
 }
 
 type Props = {
-    params: { slug: string, locale:Promise<{locale: "en" | "jp" }> };
+    params: { slug: Promise<{slug: string}>, locale:Promise<{locale: "en" | "jp" }> };
 };
 
 export default async function Post({ params }: Props ) {
     const { slug, locale } = params;
 
-    const post = await getPostBySlug(slug);
+    const post = await getPostBySlug((await slug).slug);
 
     // Enable static rendering
     setRequestLocale((await locale).locale);
