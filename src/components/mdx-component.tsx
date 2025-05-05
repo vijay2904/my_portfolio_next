@@ -4,8 +4,9 @@ import { highlight} from 'sugar-high';
 import Counter from '@/components/counter';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Code({ children, ...props } : any) {
-    let codeHTML = highlight(children);
+    const codeHTML = highlight(children);
     return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
@@ -15,7 +16,7 @@ const components = {
 }
 
 export default function MDXContent(
-    props: JSX.IntrinsicClassAttributes<any> & MDXRemoteProps
+    props: JSX.IntrinsicClassAttributes<unknown> & MDXRemoteProps
 ) {
     return (
         <MDXRemote
