@@ -1,11 +1,22 @@
 "use client";
 
 import { ChatBubbleIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChatForm } from "./chatform";
+import { usePathname } from "next/navigation";
 
 export default function Chatbot() {
     const [chatOpen, setChatOpen] = useState(false);
+
+    const pathname = usePathname();
+
+    useEffect(() => {
+        if (pathname.includes("context-aware-chatbot-using-langchain")) {
+            setChatOpen(true);
+        } else {
+            setChatOpen(false);
+        }
+    }, [pathname]);
     
     const toggleChat = () => {
         setChatOpen(!chatOpen);
@@ -13,16 +24,16 @@ export default function Chatbot() {
 
     // const [dataFromChild, setDataFromChild] = useState<{ query: string } | null>(null);
 
-    // function formatConvHistory(messages: string[]) {
-    //     return messages.map((message, i) => {
-    //         if(i % 2 === 0) {
-    //             return `Human: ${message}`;
-    //         }
-    //         return `AI: ${message}`;
-    //     })
-    // }
+    function formatConvHistory(messages: string[]) {
+        return messages.map((message, i) => {
+            if(i % 2 === 0) {
+                return `Human: ${message}`;
+            }
+            return `AI: ${message}`;
+        })
+    }
 
-    // const convHistory: string[] = [];
+    const convHistory: string[] = [];
 
 
     const handleDataFromChild = async (data: { query: string }) => {
@@ -32,7 +43,7 @@ export default function Chatbot() {
 
         const newHumanSpeechBubble = document.createElement('div');
         
-        newHumanSpeechBubble.classList.add('my-5', 'p-2', 'rounded', 'bg-white', 'text-black', 'justify-self-end', 'transition-colors', 'font-light');
+        newHumanSpeechBubble.classList.add('my-5', 'p-2','w-40', 'lg:w-60', 'rounded', 'text-foreground', 'invert', 'bg-background', 'justify-self-end', 'transition-colors', 'font-light');
         newHumanSpeechBubble.textContent = question;
         chatbotConversation?.appendChild(newHumanSpeechBubble);
         if (chatbotConversation && chatbotConversation.scrollHeight !== undefined) {
@@ -42,35 +53,46 @@ export default function Chatbot() {
 
         // Display AI's response
         const newAiSpeechBubble = document.createElement('div');
-        newAiSpeechBubble.classList.add('my-5', 'p-2', 'rounded', 'bg-black', 'text-white', 'justify-self-start', 'transition-colors', 'font-light');
+        newAiSpeechBubble.classList.add('my-5', 'p-2', 'w-40', 'lg:w-60', 'rounded', 'bg-background', 'text-white', 'justify-self-start', 'transition-colors', 'font-light');
         chatbotConversation?.appendChild(newAiSpeechBubble);
 
-        newAiSpeechBubble.textContent = 'Thinking...';
+        newAiSpeechBubble.innerHTML = `
+        <div class='flex space-x-2 justify-center items-center bg-background'>
+            <span class='sr-only'>Loading...</span>
+            <div class='h-2 w-2 invert bg-background rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+            <div class='h-2 w-2 invert bg-background rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+            <div class='h-2 w-2 invert bg-background rounded-full animate-bounce'></div>
+        </div>
+        `;
 
-        // // try {
-        // //     const response = await fetch('http://localhost:3000/chat', {
-        // //         method: 'POST',
-        // //         headers: { 'Content-Type': 'application/json' },
-        // //         body: JSON.stringify({question : question, convHistory: formatConvHistory(convHistory)}),
-        // //     });
+        try {
+            const response = await fetch('http://localhost:3000/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({question : question, convHistory: formatConvHistory(convHistory)}),
+            });
     
-        // //     const data = await response.json();
-        // //     console.log(data)
+            const data = await response.json();
     
-        // //     convHistory.push(question);
-        // //     convHistory.push(data.response);
+            convHistory.push(question);
+            convHistory.push(data.response);
     
-        // //     console.log('Conversation History:', convHistory);
+            console.log('Conversation History:', convHistory);
+
+            if(response === undefined || response === null) {
+                newAiSpeechBubble.textContent = "Something went wrong. Please email me at kvijayrohit@gmail.com";
+            } else {
+                newAiSpeechBubble.textContent = data.response;
+            }
     
-        // //     newAiSpeechBubble.textContent = data.response;
-        // // } catch (error) {
-        // //     newAiSpeechBubble.textContent = 'Sorry, something went wrong.';
-        // //     console.error('Error fetching AI response:', error);
-        // // }
+        } catch (error) {
+            newAiSpeechBubble.textContent = 'Sorry, something went wrong. Please email me at kvijayrohit@gmail.com';
+            console.error('Error fetching AI response:', error);
+        }
     
-        // if (chatbotConversation && chatbotConversation.scrollHeight !== undefined) {
-        //     chatbotConversation.scrollTop = chatbotConversation.scrollHeight;
-        // }
+        if (chatbotConversation && chatbotConversation.scrollHeight !== undefined) {
+            chatbotConversation.scrollTop = chatbotConversation.scrollHeight;
+        }
 
 
     };

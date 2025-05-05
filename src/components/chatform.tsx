@@ -52,7 +52,7 @@ export function ChatForm({ onData }: ChatFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Hi! What can I do for you?" {...field}/>
+                  <Input placeholder="Welcome! How can I help you?" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>

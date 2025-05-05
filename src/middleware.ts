@@ -4,5 +4,6 @@ export default createMiddleware(routing);
 
 export const config = {
     // Match only th below paths
-    matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
+    // matcher: ['/', '/((?!api|trpc|_next|_vercel|.*\\..*).*)']
+    matcher: ['/', '/(jp|en)/:path*']
 }
