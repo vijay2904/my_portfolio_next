@@ -8,7 +8,6 @@ export async function GET() {
 export async function POST(req) {
     try {
         const data = await req.json();
-        console.log(data)
         const { question, convHistory } = data; // Get the question from the request body
         if (!question) {
             return NextResponse.status(400).json({ error: 'Question is required' });
