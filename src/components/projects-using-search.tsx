@@ -1,21 +1,20 @@
 'use client'
 
-import { useState } from 'react'
-import { PostMetadata } from '@/lib/posts'
-
-import Posts from '@/components/posts'
+import { useState } from 'react';
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import { useTranslations } from 'next-intl'
+import { ProjectMetadata } from '@/lib/projects';
+import Projects from './projects';
+import { useTranslations } from 'next-intl';
 
-export default function PostsWithSearch({ posts }: { posts: PostMetadata[] }) {
-  const [query, setQuery] = useState('')
-  const filtered = posts.filter(post =>
-    post.title?.toLowerCase().includes(query.toLowerCase())
-  );
+export default function ProjectsWithSearch({ projects }: { projects: ProjectMetadata[] }) {
+  const [query, setQuery] = useState('');
+  const filtered = projects.filter(project =>
+    project.title?.toLowerCase().includes(query.toLowerCase())
+  )
 
-  const t = useTranslations("PostsPage");
+  const t = useTranslations("ProjectsPage");
 
   const isFiltered = query.length > 0
   function resetFilter() {
@@ -45,7 +44,7 @@ export default function PostsWithSearch({ posts }: { posts: PostMetadata[] }) {
         )}
       </div>
 
-      <Posts posts={filtered} />
+      <Projects projects={filtered} />
     </div>
   )
 }

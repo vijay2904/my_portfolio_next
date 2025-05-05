@@ -1,7 +1,8 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { GlobeIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import LocaleSwitcher from "./LocaleSwitcher";
 
 export default function ThemeToggle() {
     const {setTheme, resolvedTheme} = useTheme();
@@ -16,6 +17,11 @@ export default function ThemeToggle() {
     }
 
     return (
+        <div className="flex items-center gap-3 text-sm font-medium text-muted-foreground sm:gap-3">
+        <div className="flex items-center gap-2 justify-center">
+            <GlobeIcon className="size-4 text-sky-300" />
+            <LocaleSwitcher />
+        </div>
         <Button
             size="sm"
             variant="ghost"
@@ -31,6 +37,8 @@ export default function ThemeToggle() {
             )}
 
         </Button>
+        </div>
+        
     )
 
 }

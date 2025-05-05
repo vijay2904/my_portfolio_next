@@ -1,0 +1,43 @@
+{
+    "LocaleSwitcher": {
+        "label": "言語を変更",
+        "locale": "{locale, select, jp {JP} en {EN} other {Unknown}}"
+    },
+
+    "NavLinks": {
+        "Blogs": "ブログ",
+        "Projects": "プロジェクト",
+        "Contact": "連絡先"
+    },
+
+    "Homepage": {
+        "title": "ようこそ, 私は",
+        "my_name": "ビジャイ・ロヒット です",
+        "about_me": "私はインドのハイデラバードに拠点を置くプロのソフトウェアエンジニアです。"
+    },
+
+    "LocaleLayout": {
+        "title": "ビジャイ・ロヒット"
+    },
+
+    "PostsPage": {
+        "title": "ブログ",
+        "placeholder": "ブログを検索..."
+    },
+
+    "ProjectsPage": {
+        "title": "プロジェクト",
+        "placeholder": "プロジェクトを検索..."
+    },
+
+    "RecentPosts": {
+        "title": "最近のブログ",
+        "all_posts": "すべてのブログ"
+    },
+
+    "RecentProjects": {
+        "title": "最近のプロジェクト",
+        "all_projects": "すべてのプロジェクト"
+    }
+
+}

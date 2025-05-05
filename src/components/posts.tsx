@@ -1,15 +1,17 @@
-import Link from 'next/link'
+import { PostMetadata } from '@/lib/posts';
+import { formatDate } from '@/lib/utils';
+import NavigationLink from './NavigationLink';
 
-import { PostMetadata } from '@/lib/posts'
-import { formatDate } from '@/lib/utils'
-
-export default function Posts({ posts }: { posts: PostMetadata[] }) {
+export default function Posts({posts}: {posts: PostMetadata[]}) {
   return (
     <ul className='flex flex-col gap-8'>
       {posts.map(post => (
         <li key={post.slug}>
-          <Link
-            href={`/posts/${post.slug}`}
+          <NavigationLink
+            href={{
+                pathname: '/posts/[slug]',
+                params: { slug: post.slug }
+              }}
             className='flex flex-col justify-between gap-x-4 gap-y-1 sm:flex-row'
           >
             <div className='max-w-lg'>
@@ -24,7 +26,7 @@ export default function Posts({ posts }: { posts: PostMetadata[] }) {
                 {formatDate(post.publishedAt)}
               </p>
             )}
-          </Link>
+          </NavigationLink>
         </li>
       ))}
     </ul>

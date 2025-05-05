@@ -1,27 +1,27 @@
 import Link from 'next/link'
-import { getPosts } from '@/lib/posts'
-import Posts from '@/components/posts'
-import NavigationLink from './NavigationLink';
+import { getProjects } from '@/lib/projects'
+import Projects from '@/components/projects'
+import NavigationLink from './NavigationLink'
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
-export default async function RecentPosts() {
-  const posts = await getPosts(4);
+export default async function RecentProjects() {
+  const projects = await getProjects(2);
 
-//   const t = useTranslations('RecentPosts');
-  const t = await getTranslations("RecentPosts");
+  const t = await getTranslations("RecentProjects");
+
 
   return (
-    <section className='pb-24'>
+    <section className='pb-20'>
       <div>
         <h2 className='title mb-12'>{t('title')}</h2>
-        <Posts posts={posts} />
+        <Projects projects={projects} />
 
         <NavigationLink
-          href='/posts'
+          href='/projects'
           className='mt-8 inline-flex items-center gap-2 text-muted-foreground underline decoration-1 underline-offset-2 transition-colors hover:text-foreground'
         >
-          <span>{t('all_posts')}</span>
+          <span>{t('all_projects')}</span>
         </NavigationLink>
       </div>
     </section>

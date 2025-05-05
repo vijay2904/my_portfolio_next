@@ -1,0 +1,44 @@
+{
+    
+    "LocaleSwitcher": {
+        "label": "Change language",
+        "locale": "{locale, select, jp {JP} en {EN} other {Unknown}}"
+    },
+    
+    "NavLinks": {
+        "Blogs": "Blogs",
+        "Projects": "Projects",
+        "Contact": "Contact"
+    },
+
+    "Homepage": {
+        "title": "Hey, I'm",
+        "my_name": "Vijay Rohit Kanchusthambham",
+        "about_me": "I am a professional software engineer based in Hyderabad, India. I have a passion for building web applications and have experience in various technologies including React, Node.js, and Next.js. I am always eager to learn new skills and take on new challenges."        
+    },
+
+    "LocaleLayout": {
+        "title": "Vijay Rohit"
+    },
+
+    "PostsPage": {
+        "title": "Blogs",
+        "placeholder": "Search blogs..."
+    },
+
+    "ProjectsPage": {
+        "title": "Projects",
+        "placeholder": "Search projects..."
+    },
+
+    "RecentPosts": {
+        "title": "Recent Posts",
+        "all_posts": "All Posts"
+    },
+
+    "RecentProjects": {
+        "title": "Recent Projects",
+        "all_projects": "All Projects"
+    }
+
+}
