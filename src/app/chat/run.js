@@ -14,20 +14,20 @@ dotenv.config();
 export const run = async (questionFromChat, convHistoryFromChat) => {
     try {
         // Read the input text file
-        const text = await readFile('my-info.txt', 'utf-8');
+        // const text = await readFile('my-info.txt', 'utf-8');
 
-        // Split the text into chunks
-        const textSplitter = new RecursiveCharacterTextSplitter({
-            chunkSize: 80,
-            chunkOverlap: 20,
-            separators: ['\n\n', '\n', ' ', ''],
-        });
+        // // Split the text into chunks
+        // const textSplitter = new RecursiveCharacterTextSplitter({
+        //     chunkSize: 80,
+        //     chunkOverlap: 20,
+        //     separators: ['\n\n', '\n', ' ', ''],
+        // });
 
-        const output = await textSplitter.createDocuments([text]);
+        // const output = await textSplitter.createDocuments([text]);
 
-        output.forEach((doc, index) => {
-            doc.metadata = { ...doc.metadata, id: `doc-${index}` }; // Assign a unique ID
-        });
+        // output.forEach((doc, index) => {
+        //     doc.metadata = { ...doc.metadata, id: `doc-${index}` }; // Assign a unique ID
+        // });
 
         // Retrieve environment variables
         const sbApiKey = process.env.SB_API_KEY;
