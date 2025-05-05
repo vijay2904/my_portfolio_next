@@ -1,4 +1,5 @@
-import { getPostBySlug, getPosts } from "@/lib/posts";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { getPostBySlug, getPosts, PostMetadata } from "@/lib/posts";
 import { formatDate } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -7,6 +8,7 @@ import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import MDXContent from "@/components/mdx-component";
 import { setRequestLocale } from "next-intl/server";
 import NavigationLink from "@/components/NavigationLink";
+import { Locale } from "next-intl";
 
 export async function generateStaticParams() {
     const posts = await getPosts();
@@ -15,16 +17,18 @@ export async function generateStaticParams() {
 }
 
 type Props = {
-    params: { slug: Promise<{slug: string}>, locale:Promise<{locale: "en" | "jp" }> };
+    params: { slug: string };
+    paramsLocale: Locale;
 };
 
-export default async function Post({ params }: Props ) {
-    const { slug, locale } = params;
+export default async function Post({ params, paramsLocale }: Props) {
+    const {slug} = params;
+    const post = await getPostBySlug(slug);
 
-    const post = await getPostBySlug((await slug).slug);
-
+    const locale = paramsLocale;
+        
     // Enable static rendering
-    setRequestLocale((await locale).locale);
+    setRequestLocale(locale);
 
     if(!post) {
         notFound();

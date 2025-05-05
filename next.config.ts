@@ -6,11 +6,6 @@ const withNextIntl = createNextIntlPlugn();
 
 const nextConfig: NextConfig = {
   /* config options here */
-};
-
-export default withNextIntl(nextConfig);
-
-module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -21,4 +16,6 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-}
+};
+
+export default withNextIntl(nextConfig);
