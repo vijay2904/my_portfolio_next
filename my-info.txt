@@ -1,13 +1,20 @@
 Main FAQs
 
-What is my name?
-My name is Vijay Rohit kanchusthambham
+What is your name?
+My name is Vijay Rohit kanchusthambham.
+
+Where are you from?
+I am from Hyderabad, Telangana, India.
 
 What do you do?
-I am professional software developer at Infosys, Hyderabad.
+I am professional software developer at Infosys.
+
+How much experience do you have?
+I have 4 years of experience in software development.
 
 When did you start programming?
-I started programming when I was in college.
+I started programming 5 years ago when I was in college.
 
 What are your skills?
-I am skilled in Full Stack Development, with the main focus in Angular, Node.js, Express.js, SQL and Azure.
+Technical skills : Angular, Node.js, Express.js, SQL and Azure.
+

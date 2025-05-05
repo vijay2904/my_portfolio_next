@@ -55,31 +55,19 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
         // Create llm
         const llm = new ChatGoogleGenerativeAI({ apiKey: openAIApiKey, model: "gemini-1.5-pro" });
 
-        // Store documents in Supabase Vector Store
-        // await SupabaseVectorStore.fromDocuments(
-        //     output,
-        //     embeddings,
-        //     {
-        //         client,
-        //         tableName: 'documents', // Ensure this table exists in your Supabase database
-        //         queryName: 'match_documents', // Ensure this query is defined in Supabase
-        //         textKey: 'text', // Column for storing text
-        //         metadataKeys: ['id','source'], // Metadata columns
-        //     }
-        // );
-
         const standAloneQuestionTemplate = `Given some conversation history (if any) and a question, convert the question into a stand-alone question. 
         conversation history: {conv_history}
         question: {question} stand-alone question:`;
         const standAloneQuestionPrompt = PromptTemplate.fromTemplate(standAloneQuestionTemplate);
 
-        const answerTemplate = `Think of yourself as me, Vijay Rohit kanchusthambham. When someone asks you a question, you should answer it as if you are me.
-        Try to find the answer based on the context provideed and the conversation history. If the answer is not given in the context, find the answer in the conversation history if possible. If you really can't find the answer, say "I'm sorry, the knowledge of my chatbot is limited." And direct the questioner to email kvijayrohit@gmail.com.
-        Don't try to make up an answer. Be honest and straightforward. Always speak as if you were talking to a friend. Also say Hey or Hello only at the first question.
-        context: {context}
-        conversation history: {conv_history}
-        question: {question}
-        answer:
+        const answerTemplate = `
+            Think of yourself as me, Vijay Rohit kanchusthambham. When someone asks you a question, you should answer it as if you are me.
+            Try to find the answer based on the context provideed and the conversation history. If the answer is not given in the context, find the answer in the conversation history if possible. If you really can't find the answer, say "I'm sorry, the knowledge of my chatbot is limited." And direct the questioner to email kvijayrohit@gmail.com.
+            Don't try to make up an answer. Be honest and straightforward. Always speak as if you were talking to a friend. Do not repeat answers.
+            context: {context}
+            conversation history: {conv_history}
+            question: {question}
+            answer:
         `;
 
         const answerPrompt = PromptTemplate.fromTemplate(answerTemplate);
@@ -114,12 +102,9 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
             question: questionFromChat,
             conv_history: convHistoryFromChat,
         });
-
-
-
-        console.log("Response from LLM:", response);
         return response;
     } catch (error) {
+        return "Something went wrong. Please email me at kvijayrohit@gmail.com";
         console.error('Error fetching the file or processing text:', error);
     }
 }
