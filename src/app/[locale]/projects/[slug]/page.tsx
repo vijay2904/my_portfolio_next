@@ -6,8 +6,6 @@ import Image from 'next/image';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import MDXContent from "@/components/mdx-component";
 import NavigationLink from "@/components/NavigationLink";
-import { Locale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
 
 export async function generateStaticParams() {
     const projects = await getProjects();
@@ -17,18 +15,12 @@ export async function generateStaticParams() {
 
 type Props = {
     params: { slug: string };
-    paramsLocale: Locale;
 };
 
-export default async function Project({ params, paramsLocale }: Props) {
+export default async function Project({ params }: Props) {
 
     const {slug} = await params;
     const project = await getProjectBySlug(slug);
-
-    const locale = paramsLocale;
-    
-    // Enable static rendering
-    setRequestLocale(locale);
 
     if(!project) {
         notFound();

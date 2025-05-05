@@ -1,20 +1,11 @@
 import ProjectsWithSearch from '@/components/projects-using-search';
 import React from 'react';
 import { getProjects } from '@/lib/projects';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Locale } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-type Props = {
-    params: Locale;
-};
-
-export default async function ProjectsPage({params}: Props) {
+export default async function ProjectsPage() {
     const projects = await getProjects();
 
-    const locale = params;
-    
-    // Enable static rendering
-    setRequestLocale(locale);
 
     const t = await getTranslations("ProjectsPage");
     
