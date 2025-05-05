@@ -25,7 +25,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
         const fileContent = fs.readFileSync(filePath, 'utf8');
         const {data, content} = matter(fileContent);
         return {metadata: {...data, slug}, content};
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e) {
         return null;
     }
 }

@@ -1,8 +1,6 @@
-import Link from 'next/link'
 import { getPosts } from '@/lib/posts'
 import Posts from '@/components/posts'
 import NavigationLink from './NavigationLink';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 export default async function RecentPosts() {

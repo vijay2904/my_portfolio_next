@@ -11,8 +11,6 @@ import { RunnablePassthrough, RunnableSequence } from '@langchain/core/runnables
 
 dotenv.config();
 
-const convHistory = [];
-
 export const run = async (questionFromChat, convHistoryFromChat) => {
     try {
         // Read the input text file
@@ -121,8 +119,6 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
 
         console.log("Response from LLM:", response);
         return response;
-
-        console.log("Documents successfully stored in Supabase Vector Store!");
     } catch (error) {
         console.error('Error fetching the file or processing text:', error);
     }

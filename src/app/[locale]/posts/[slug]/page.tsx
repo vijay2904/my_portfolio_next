@@ -1,10 +1,7 @@
 import { getPostBySlug, getPosts } from "@/lib/posts";
 import { formatDate } from "@/lib/utils";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
-import { format } from "path";
-import React, { use } from "react";
-import Link from 'next/link';
+import React from "react";
 import Image from 'next/image';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import MDXContent from "@/components/mdx-component";

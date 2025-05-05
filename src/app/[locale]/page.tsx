@@ -1,7 +1,7 @@
 import Intro from "@/components/intro";
 import RecentPosts from "@/components/recent-posts";
 import RecentProjects from "@/components/recent-projects";
-import { Locale, useTranslations } from "next-intl";
+import { Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { use } from "react";
 

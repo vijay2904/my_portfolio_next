@@ -3,7 +3,6 @@
 import ThemeToggle from './theme-toggle';
 import { useTranslations } from 'next-intl';
 import NavigationLink from './NavigationLink';
-import LocaleSwitcher from './LocaleSwitcher';
 import { useState } from 'react';
 
 export default function Header() {

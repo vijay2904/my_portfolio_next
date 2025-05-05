@@ -1,7 +1,7 @@
 "use client";
 
 import { ChatBubbleIcon } from "@radix-ui/react-icons";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { ChatForm } from "./chatform";
 
 export default function Chatbot() {
@@ -11,18 +11,18 @@ export default function Chatbot() {
         setChatOpen(!chatOpen);
     }
 
-    const [dataFromChild, setDataFromChild] = useState<{ query: string } | null>(null);
+    // const [dataFromChild, setDataFromChild] = useState<{ query: string } | null>(null);
 
-    function formatConvHistory(messages: string[]) {
-        return messages.map((message, i) => {
-            if(i % 2 === 0) {
-                return `Human: ${message}`;
-            }
-            return `AI: ${message}`;
-        })
-    }
+    // function formatConvHistory(messages: string[]) {
+    //     return messages.map((message, i) => {
+    //         if(i % 2 === 0) {
+    //             return `Human: ${message}`;
+    //         }
+    //         return `AI: ${message}`;
+    //     })
+    // }
 
-    const convHistory: string[] = [];
+    // const convHistory: string[] = [];
 
 
     const handleDataFromChild = async (data: { query: string }) => {
@@ -73,12 +73,6 @@ export default function Chatbot() {
         // }
 
 
-    };
-
-    const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-    const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     };
     
     return (
