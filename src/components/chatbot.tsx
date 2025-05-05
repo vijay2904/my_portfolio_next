@@ -22,12 +22,10 @@ export default function Chatbot() {
         })
     }
 
+    const convHistory: string[] = [];
+
+
     const handleDataFromChild = async (data: { query: string }) => {
-        console.log(data)
-        // setDataFromChild(data);
-
-        const convHistory: string[] = [];
-
 
         const chatbotConversation = document.querySelector('.chat-messages');
         const question = data.query;
@@ -50,13 +48,14 @@ export default function Chatbot() {
         newAiSpeechBubble.textContent = 'Thinking...';
 
         try {
-            const response = await fetch('http://localhost:5000/chat', {
+            const response = await fetch('http://localhost:3000/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({question : question, convHistory: formatConvHistory(convHistory)}),
             });
     
             const data = await response.json();
+            console.log(data)
     
             convHistory.push(question);
             convHistory.push(data.response);
@@ -76,7 +75,28 @@ export default function Chatbot() {
 
     };
 
+    const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
+    const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
+
+    const themeStyles = {
+        light: {
+            chatContainer: 'bg-gray-400',
+            chatMessages: 'bg-white text-black',
+            chatBubble: 'bg-gray-500 text-white',
+        },
+        dark: {
+            chatContainer: 'bg-gray-800',
+            chatMessages: 'bg-black text-white',
+            chatBubble: 'bg-gray-700 text-gray-300',
+        },
+    };
+
+    const currentTheme = themeStyles[theme];
+
+    
     return (
         <div>
             <style jsx>{`
