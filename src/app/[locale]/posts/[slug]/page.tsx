@@ -5,7 +5,6 @@ import React from "react";
 import Image from 'next/image';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import MDXContent from "@/components/mdx-component";
-import { Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import NavigationLink from "@/components/NavigationLink";
 
@@ -16,16 +15,16 @@ export async function generateStaticParams() {
 }
 
 type Props = {
-    params: { slug: string, locale: Locale };
+    params: { slug: string, locale:Promise<{locale: "en" | "jp" }> };
 };
 
 export default async function Post({ params }: Props ) {
-    const { slug, locale } = await params;
+    const { slug, locale } = params;
 
     const post = await getPostBySlug(slug);
 
     // Enable static rendering
-    setRequestLocale(locale);
+    setRequestLocale((await locale).locale);
 
     if(!post) {
         notFound();
