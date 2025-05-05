@@ -16,18 +16,13 @@ export async function generateStaticParams() {
 }
 
 type Props = {
-    params: { slug: string };
-    paramsLocale: Locale;
+    params: { slug: string, locale: Locale };
 };
 
-export default async function Post({ params, paramsLocale }: Props ) {
-    const {slug} = await params;
-
-    console.log('Post slug:', slug);
+export default async function Post({ params }: Props ) {
+    const { slug, locale } = await params;
 
     const post = await getPostBySlug(slug);
-
-    const locale = paramsLocale;
 
     // Enable static rendering
     setRequestLocale(locale);
