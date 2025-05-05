@@ -77,6 +77,10 @@
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
 
+  --placeholder-color: oklch(0.13 0.028 261.692);
+  --placeholder-opacity: 0.5;
+  --placeholder-font-weight: 400;
+
   --sh-identifier: #354150;
   --sh-keyword: #f47067;
   --sh-string: #00a99a;
@@ -120,6 +124,10 @@
   --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+
+  --placeholder-color: oklch(0.85 0.02 240);
+  --placeholder-opacity: 0.5;
+  --placeholder-font-weight: 400;
 
   --sh-class: #4c97f8;
   --sh-identifier: white;

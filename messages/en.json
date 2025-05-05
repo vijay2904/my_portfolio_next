@@ -21,6 +21,16 @@
         "title": "Vijay Rohit"
     },
 
+    "PostsPage": {
+        "title": "Blogs",
+        "placeholder": "Search blogs..."
+    },
+
+    "ProjectsPage": {
+        "title": "Projects",
+        "placeholder": "Search projects..."
+    },
+
     "RecentPosts": {
         "title": "Recent Posts",
         "all_posts": "All Posts"

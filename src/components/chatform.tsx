@@ -18,6 +18,7 @@ import {
 
 
 import { Input } from "@/components/ui/input"
+import { requestFormReset } from "react-dom";
 
 const formSchema = z.object({
   query: z.string()
@@ -41,6 +42,7 @@ export function ChatForm({ onData }: ChatFormProps) {
       })
     
     function onSubmit(values: z.infer<typeof formSchema>) {
+        form.reset();
         onData(values);
     }
 
@@ -54,7 +56,7 @@ export function ChatForm({ onData }: ChatFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Hi! What can I do for you?" {...field} />
+                  <Input placeholder="Hi! What can I do for you?" {...field}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>

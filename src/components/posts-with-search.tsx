@@ -7,12 +7,15 @@ import Posts from '@/components/posts'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Cross2Icon } from '@radix-ui/react-icons'
+import { useTranslations } from 'next-intl'
 
 export default function PostsWithSearch({ posts }: { posts: PostMetadata[] }) {
   const [query, setQuery] = useState('')
   const filtered = posts.filter(post =>
     post.title?.toLowerCase().includes(query.toLowerCase())
-  )
+  );
+
+  const t = useTranslations("PostsPage");
 
   const isFiltered = query.length > 0
   function resetFilter() {
@@ -24,7 +27,7 @@ export default function PostsWithSearch({ posts }: { posts: PostMetadata[] }) {
       <div className='mb-12 flex items-center gap-3'>
         <Input
           type='text'
-          placeholder='Search posts...'
+          placeholder={t("placeholder")}
           className='h-9 w-full sm:w-1/2'
           value={query}
           onChange={e => setQuery(e.target.value)}

@@ -1,7 +1,7 @@
 import PostsWithSearch from '@/components/posts-with-search';
 import { getPosts } from '@/lib/posts';
 import { Locale } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import React, { use } from 'react';
 
 type Props = {
@@ -13,14 +13,14 @@ export default async function PostsPage({params}: Props) {
 
     const locale = params;
 
-    // Enable static rendering
     setRequestLocale(locale);
   
+    const t = await getTranslations("PostsPage");
     
     return (
         <section className='pb-24 pt-40'>
             <div className="container max-w-3xl mx-auto px-4">
-                <div className="title mb-12">Blogs</div>
+                <div className="title mb-12">{t("title")}</div>
 
                 <PostsWithSearch posts={posts} />
             </div>

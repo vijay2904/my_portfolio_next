@@ -20,6 +20,16 @@
         "title": "ビジャイ・ロヒット"
     },
 
+    "PostsPage": {
+        "title": "ブログ",
+        "placeholder": "ブログを検索..."
+    },
+
+    "ProjectsPage": {
+        "title": "プロジェクト",
+        "placeholder": "プロジェクトを検索..."
+    },
+
     "RecentPosts": {
         "title": "最近のブログ",
         "all_posts": "すべてのブログ"

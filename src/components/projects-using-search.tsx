@@ -6,12 +6,15 @@ import { Button } from '@/components/ui/button'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { ProjectMetadata } from '@/lib/projects';
 import Projects from './projects';
+import { useTranslations } from 'next-intl';
 
 export default function ProjectsWithSearch({ projects }: { projects: ProjectMetadata[] }) {
   const [query, setQuery] = useState('');
   const filtered = projects.filter(project =>
     project.title?.toLowerCase().includes(query.toLowerCase())
   )
+
+  const t = useTranslations("ProjectsPage");
 
   const isFiltered = query.length > 0
   function resetFilter() {
@@ -23,7 +26,7 @@ export default function ProjectsWithSearch({ projects }: { projects: ProjectMeta
       <div className='mb-12 flex items-center gap-3'>
         <Input
           type='text'
-          placeholder='Search projects...'
+          placeholder={t("placeholder")}
           className='h-9 w-full sm:w-1/2'
           value={query}
           onChange={e => setQuery(e.target.value)}
