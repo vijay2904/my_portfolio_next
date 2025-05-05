@@ -53,7 +53,7 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
         const retriever = vectorstore.asRetriever();
 
         // Create llm
-        const llm = new ChatGoogleGenerativeAI({ apiKey: openAIApiKey, model: "gemini-1.5-pro" });
+        const llm = new ChatGoogleGenerativeAI({ apiKey: openAIApiKey, model: "gemini-2.0-flash" });
 
         const standAloneQuestionTemplate = `Given some conversation history (if any) and a question, convert the question into a stand-alone question. 
         conversation history: {conv_history}
