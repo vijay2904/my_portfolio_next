@@ -2,7 +2,6 @@ import { getProjectBySlug, getProjects } from "@/lib/projects";
 import { formatDate } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import React from "react";
-import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import MDXContent from "@/components/mdx-component";

@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { fontFamily } = require('tailwindcss/defaultTheme')
 import type { Config } from 'tailwindcss'
 
@@ -7,7 +8,8 @@ const config = {
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}'
+    './src/**/*.{ts,tsx}',
+    './src/app/[locale]/globals.css'
   ],
   prefix: '',
   theme: {
@@ -82,6 +84,7 @@ const config = {
 
     
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')]
 } satisfies Config
 

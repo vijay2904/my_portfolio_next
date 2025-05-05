@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
 import NavigationLink from '@/components/NavigationLink'
 

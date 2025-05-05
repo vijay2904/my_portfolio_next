@@ -1,8 +1,6 @@
-import Link from 'next/link'
 import { getProjects } from '@/lib/projects'
 import Projects from '@/components/projects'
 import NavigationLink from './NavigationLink'
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 export default async function RecentProjects() {

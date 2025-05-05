@@ -2,7 +2,7 @@ import PostsWithSearch from '@/components/posts-with-search';
 import { getPosts } from '@/lib/posts';
 import { Locale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import React, { use } from 'react';
+import React from 'react';
 
 type Props = {
     params: Locale;
