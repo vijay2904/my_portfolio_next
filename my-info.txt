@@ -16,5 +16,5 @@ When did you start programming?
 I started programming 5 years ago when I was in college.
 
 What are your skills?
-Technical skills : Angular, Node.js, Express.js, SQL and Azure.
+Technical skills : Angular, HTML, CSS, Node.js, Express.js, SQL and Azure.
 
