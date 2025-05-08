@@ -14,20 +14,20 @@ dotenv.config();
 export const run = async (questionFromChat, convHistoryFromChat) => {
     try {
         // Read the input text file
-        const text = await readFile('my-info.txt', 'utf-8');
+        // const text = await readFile('my-info.txt', 'utf-8');
 
-        // Split the text into chunks
-        const textSplitter = new RecursiveCharacterTextSplitter({
-            chunkSize: 80,
-            chunkOverlap: 20,
-            separators: ['\n\n', '\n', ' ', ''],
-        });
+        // // Split the text into chunks
+        // const textSplitter = new RecursiveCharacterTextSplitter({
+        //     chunkSize: 80,
+        //     chunkOverlap: 20,
+        //     separators: ['\n\n', '\n', ' ', ''],
+        // });
 
         const output = await textSplitter.createDocuments([text]);
 
-        output.forEach((doc, index) => {
-            doc.metadata = { ...doc.metadata, id: `doc-${index}` }; // Assign a unique ID
-        });
+        // output.forEach((doc, index) => {
+        //     doc.metadata = { ...doc.metadata, id: `doc-${index}` }; // Assign a unique ID
+        // });
 
         // Retrieve environment variables
         const sbApiKey = process.env.SB_API_KEY;
@@ -55,15 +55,17 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
         // Create llm
         const llm = new ChatGoogleGenerativeAI({ apiKey: openAIApiKey, model: "gemini-2.0-flash" });
 
-        const standAloneQuestionTemplate = `Given some conversation history (if any) and a question, convert the question into a stand-alone question. 
-        conversation history: {conv_history}
+        const standAloneQuestionTemplate = `Given a chat history and the latest user question \
+    which might reference context in the chat history, formulate a standalone question \
+    which can be understood without the chat history. Do NOT answer the question, \
+    just reformulate it if needed and otherwise return it as is.
+            conversation history: {conv_history}
         question: {question} stand-alone question:`;
         const standAloneQuestionPrompt = PromptTemplate.fromTemplate(standAloneQuestionTemplate);
 
         const answerTemplate = `
-            Think of yourself as me, Vijay Rohit kanchusthambham. When someone asks you a question, you should answer it as if you are me.
-            Try to find the answer based on the context provideed and the conversation history. If the answer is not given in the context, find the answer in the conversation history if possible. If you really can't find the answer, say "I'm sorry, the knowledge of my chatbot is limited." And direct the questioner to email kvijayrohit@gmail.com.
-            Don't try to make up an answer. Be honest and straightforward. Always speak as if you were talking to a friend. Do not repeat answers.
+            Use the following pieces of retrieved context to answer the question.
+    Use three to seven sentences maximum and keep the answer concise, while still giving depth. Always speak as if you were talking to a friend.
             context: {context}
             conversation history: {conv_history}
             question: {question}
