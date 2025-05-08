@@ -103,8 +103,8 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
             conv_history: convHistoryFromChat,
         });
         return response;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
         return "Something went wrong. Please email me at kvijayrohit@gmail.com";
-        console.error('Error fetching the file or processing text:', error);
     }
 }
