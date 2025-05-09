@@ -1,5 +1,3 @@
-import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
-import { readFile } from 'fs/promises';
 import { createClient } from '@supabase/supabase-js';
 import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 import { ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
@@ -23,7 +21,7 @@ export const run = async (questionFromChat, convHistoryFromChat) => {
         //     separators: ['\n\n', '\n', ' ', ''],
         // });
 
-        const output = await textSplitter.createDocuments([text]);
+        // const output = await textSplitter.createDocuments([text]);
 
         // output.forEach((doc, index) => {
         //     doc.metadata = { ...doc.metadata, id: `doc-${index}` }; // Assign a unique ID
