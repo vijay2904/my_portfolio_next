@@ -55,7 +55,7 @@ export default function Chatbot() {
 
         // Display AI's response
         const newAiSpeechBubble = document.createElement('div');
-        newAiSpeechBubble.classList.add('my-5', 'p-2', 'w-40', 'lg:w-60', 'rounded', 'bg-background', 'text-white', 'justify-self-start', 'transition-colors', 'font-light');
+        newAiSpeechBubble.classList.add('my-5', 'p-2', 'w-40', 'lg:w-60', 'rounded', 'bg-background', 'text-foreground', 'justify-self-start', 'transition-colors', 'font-light');
         chatbotConversation?.appendChild(newAiSpeechBubble);
 
         newAiSpeechBubble.innerHTML = `
