@@ -1,0 +1,154 @@
+---
+    title: DocuSign JWT integration with Node.js
+    summary: Docusign eSignature is document signing software that you can use to legally and securely collect approvals online in minutes.
+    image: /images/posts/Docusign.png
+    publishedAt: '2025-05-13'
+---
+
+# **Docusign JWT Access token in Node.js with refresh functionality**
+<br/>
+
+1. **Prerequisites**
+- DocuSign Developer Account
+- Application Integration Key
+- RSA key
+
+<br/>
+
+2. **Install Dependency**
+<br/>
+
+```
+npm install docusign-esign
+```
+<br/>
+
+3. **Environment Configuration**
+<br/>
+
+Add the following keys to .env file:
+<br/>
+
+```
+INTEGRATION KEY=your_application_integration_key
+BASE PATH=https://demo.docusign.net/restapi
+```
+<br/>
+
+**Note:**
+<br/>
+
+- **Integration key:**
+#### can be obtained in your developer account from the Apps and Keys page.
+<br/>
+
+- **Base path:**
+#### To use either JWT Grant function, you need to use an SDK ApiClient object. To create an ApiClient object, you need to provide a base path. Since the application's correct base path is not yet known, use placeholder values to indicate which system should be queried:
+<br/>
+
+    ```
+    https://demo.docusign.net/restapi #development
+    https://www.docusign.net/restapi #production
+    ```
+<br/>
+
+4. **Store the RSA key securely.**
+<br/>
+
+- **RSA private key:**
+#### This is for the integration key you obtained above and can also be created on the Apps and Keys page. You only need the private key, and it can only be copied once. Make sure to retain it for your records.
+<br/>
+
+# Code Implementation
+<br/>
+
+1. Create a new class to implement token storage and refresh functionality for DocuSign JWT authentication:
+<br/>
+
+```
+// DocuSignTokenManager.ts
+
+const docusign require('docusign-esign');
+const fs require('fs');
+const path require('path');
+
+class DocuSignTokenManager {
+  constructor() {
+    this.token null;
+    this.tokenExpiry null;
+    this.refresh Threshold 300; // Refresh token 5 minutes before expiry
+  }
+
+  async getToken() {
+    const currentTime Date.now();
+    // Check if token exists and is not close to expiry
+    if (this.token && this. tokenExpiry &&
+    (this.tokenExpiry currentTime) > (this.refresh Threshold * 100)) {
+      return this.token;
+    }
+
+    // Get new token if expired
+    return await this.refresh Token();
+  }
+
+  async refreshToken() {
+    const dsApiClient new docusign.ApiClient();
+    dsApiClient.setBasePath(process.env.BASE PATH);
+  
+    try {
+      const results = await dsApiClient.requestJWTApplicationToken(
+        process.env.INTEGRATION_KEY, // Application integration key
+        ["signature"], // Add other scopes based on requirement
+        fs.readFileSync(path.join(_dirname, 'private.key')), // file that contains the private RSA key,
+        3600 // expiry time
+      );
+  
+      this.token = results.body.access_token;
+      this.tokenExpiry Date.now() + (3600 * 1000); // Set expiry to current time + 1 hour
+      return this.token;
+    } catch (error) {
+      console.error('Error refreshing token:', error);
+      throw error;
+    }
+  }
+}
+```
+<br/>
+
+2. Add a route handler
+<br/>
+
+```
+const DocuSignTokenManager = require('./docuSignTokenManager');
+const tokenManager = new DocuSignTokenManager();
+
+app.get('/docusignAuthkey', async (req, res) => {
+  try {
+    const token await tokenManager.getToken();
+    res.json({
+      success: true, 
+      message: JWT Token obtained successfully',
+      token: token,
+      expiresAt: tokenManager.tokenExpiry
+    });
+  
+  } catch (error) {
+      res.status(500).json({
+        success: false,
+        error: 'Failed to obtain JWT token'
+      });
+  }
+});
+```
+<br/>
+
+# Testing
+<br/>
+
+1. Start the Server
+<br/>
+
+2. Send Test Request to the server using Postman with all the required authorization and credentials.
+```
+http://localhost:8000/docusignAuthKey
+```
