@@ -10,10 +10,23 @@ function Code({ children, ...props } : any) {
     return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
-const components = {
-    code: Code,
-    Counter
+interface CodeProps extends React.HTMLAttributes<HTMLElement> {
+    children: string;
 }
+
+interface Components {
+    code: React.FC<CodeProps>;
+    Counter: typeof Counter;
+    ol: React.FC<React.OlHTMLAttributes<HTMLOListElement>>;
+    ul: React.FC<React.OlHTMLAttributes<HTMLOListElement>>;
+}
+
+const components: Components = {
+    code: Code,
+    Counter,
+    ol: (props) => <ol className="list-decimal" {...props} />,
+    ul: (props) => <ul className="list-disc" {...props} />,
+};
 
 export default function MDXContent(
     props: JSX.IntrinsicClassAttributes<unknown> & MDXRemoteProps
