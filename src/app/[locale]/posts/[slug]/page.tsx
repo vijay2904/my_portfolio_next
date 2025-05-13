@@ -39,7 +39,7 @@ export default async function Post({ params }: Props) {
                 className='mb-8 inline-flex items-center gap-2 text-sm font-light text-muted-foreground transition-colors hover:text-foreground'
                 >
                 <ArrowLeftIcon className='h-5 w-5' />
-                <span>Back to posts</span>
+                <span>Back to blogs</span>
                 </NavigationLink>
 
                 {image && (
