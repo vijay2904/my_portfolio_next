@@ -25,8 +25,8 @@ interface Components {
 const components: Components = {
     code: Code,
     Counter,
-    h1:　(props) => <h1 className="title" {...props} />,
-    ol: (props) => <ol className="list-decimal" {...props} />,
+    h1:　(props) => <h1 className="text-3xl" {...props} />,
+    ol: (props) => <ol className="list-decimal pl-4" {...props} />,
     ul: (props) => <ul className="list-disc" {...props} />,
 };
 
