@@ -19,9 +19,9 @@ export type PostMetadata = {
 }
 
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+export async function getPostBySlug(slug: string, locale:string = 'en'): Promise<Post | null> {
     try {
-        const filePath = path.join(rootDirectory, `${slug}.mdx`);
+        const filePath = path.join(rootDirectory, `${slug}.${locale}.mdx`);
         const fileContent = fs.readFileSync(filePath, 'utf8');
         const {data, content} = matter(fileContent);
         return {metadata: {...data, slug}, content};
