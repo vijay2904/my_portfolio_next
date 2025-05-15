@@ -17,12 +17,12 @@ export async function generateStaticParams() {
 }
 
 type Props = {
-    params: { slug: string };
+    params: { slug: string, locale: string };
 };
 
 export default async function Post({ params }: Props) {
-    const {slug} = params;
-    const post = await getPostBySlug(slug);
+    const {slug, locale} = await　params;
+    const post = await getPostBySlug(slug, locale);
 
     if(!post) {
         notFound();

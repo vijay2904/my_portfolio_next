@@ -3,8 +3,13 @@ import { getPosts } from '@/lib/posts';
 import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
-export default async function PostsPage() {
-    const posts = await getPosts();
+type Props = {
+    params: { locale: string };
+};
+
+export default async function PostsPage({ params }: Props) {
+    const {locale} = await　params;
+    const posts = await getPosts(undefined, locale);
   
     const t = await getTranslations("PostsPage");
     
@@ -13,7 +18,7 @@ export default async function PostsPage() {
             <div className="container max-w-3xl mx-auto px-4">
                 <div className="title mb-12">{t("title")}</div>
 
-                <PostsWithSearch posts={posts} />
+                <PostsWithSearch posts={posts}/>
             </div>
         </section>
     )

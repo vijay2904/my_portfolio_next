@@ -17,14 +17,16 @@ interface CodeProps extends React.HTMLAttributes<HTMLElement> {
 interface Components {
     code: React.FC<CodeProps>;
     Counter: typeof Counter;
+    h1:　React.FC<React.OlHTMLAttributes<HTMLHeadingElement>>;
     ol: React.FC<React.OlHTMLAttributes<HTMLOListElement>>;
-    ul: React.FC<React.OlHTMLAttributes<HTMLOListElement>>;
+    ul: React.FC<React.OlHTMLAttributes<HTMLUListElement>>;
 }
 
 const components: Components = {
     code: Code,
     Counter,
-    ol: (props) => <ol className="list-decimal" {...props} />,
+    h1:　(props) => <h1 className="text-3xl" {...props} />,
+    ol: (props) => <ol className="list-decimal pl-4" {...props} />,
     ul: (props) => <ul className="list-disc" {...props} />,
 };
 

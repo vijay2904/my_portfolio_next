@@ -3,8 +3,8 @@ import Posts from '@/components/posts'
 import NavigationLink from './NavigationLink';
 import { getTranslations } from 'next-intl/server';
 
-export default async function RecentPosts() {
-  const posts = await getPosts(4);
+export default async function RecentPosts({locale}: {locale: string}) {
+  const posts = await getPosts(4, locale);
 
 //   const t = useTranslations('RecentPosts');
   const t = await getTranslations("RecentPosts");
