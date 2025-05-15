@@ -21,7 +21,7 @@ export default function Home({params}: Props) {
       <div className='container max-w-3xl mx-auto px-4'>
         <Intro />
 
-        <RecentPosts />
+        <RecentPosts locale={locale} />
         <RecentProjects />
       </div>
     </section>

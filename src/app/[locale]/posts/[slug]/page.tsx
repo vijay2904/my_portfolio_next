@@ -21,7 +21,7 @@ type Props = {
 };
 
 export default async function Post({ params }: Props) {
-    const {slug, locale} = params;
+    const {slug, locale} = await　params;
     const post = await getPostBySlug(slug, locale);
 
     if(!post) {
