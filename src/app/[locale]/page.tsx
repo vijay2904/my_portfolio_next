@@ -17,7 +17,7 @@ export default function Home({params}: Props) {
   setRequestLocale(locale);
 
   return (
-    <section className='pb-24 pt-40'>
+    <section className='pb-15 pt-30'>
       <div className='container max-w-3xl mx-auto px-4'>
         <Intro />
 

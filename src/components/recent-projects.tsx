@@ -10,7 +10,7 @@ export default async function RecentProjects() {
 
 
   return (
-    <section className='pb-20'>
+    <section className='pb-5'>
       <div>
         <h2 className='title mb-12'>{t('title')}</h2>
         <Projects projects={projects} />
