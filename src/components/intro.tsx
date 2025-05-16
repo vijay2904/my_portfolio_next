@@ -7,8 +7,9 @@ const authorImage = '/images/authors/author.jpg';
 export default function Intro() {
 
   const t = useTranslations('Homepage');
+  const tResume = useTranslations('Resume');
 
-  const resumeLink = 'https://drive.google.com/file/d/19jaeVl6f0n0odaJCDl-1oqxis0xlPQrF/view?usp=sharing';
+  const resumeLink = tResume('link');
 
   function openResume() {
     window.open(resumeLink, '_blank');
@@ -22,7 +23,7 @@ export default function Intro() {
           {t('about_me')}
         </p>
         <Button className='bg-foreground cursor-pointer w-30 rounded-full px-5 py-2.5 mt-8 mb-2 scale-95 transition-transform duration-300 ease-in-out hover:scale-105 font-md' onClick={openResume}>
-          <span>Resume</span>
+          <span>{tResume('label')}</span>
         </Button>
       </div>
       <div className='relative'>

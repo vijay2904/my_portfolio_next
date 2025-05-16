@@ -39,6 +39,11 @@
     "RecentProjects": {
         "title": "Recent Projects",
         "all_projects": "All Projects"
+    },
+
+    "Resume": {
+        "label": "Resume",
+        "link": "https://drive.google.com/file/d/19jaeVl6f0n0odaJCDl-1oqxis0xlPQrF/view?usp=sharing"
     }
 
 }
