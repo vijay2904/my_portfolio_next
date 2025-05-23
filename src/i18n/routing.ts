@@ -6,19 +6,19 @@ export const routing = defineRouting({
   pathnames: {
     '/': '/',
     '/posts': {
-      jp: '/ブログ'
+      jp: '/posts'
     },
     '/projects': {
-      jp: '/プロジェクト'
+      jp: '/projects'
     },
     '/contact': {
-      jp: '/連絡先'
+      jp: '/contact'
     },
     '/posts/[slug]': {
-      jp: '/ブログ/[slug]'
+      jp: '/posts/[slug]'
     },
     '/projects/[slug]': {
-      jp: '/プロジェクト/[slug]'
-    },
+      jp: '/projects/[slug]'
+    }
   }
 });
