@@ -68,7 +68,6 @@ export default function Chatbot() {
         `;
 
         try {
-            console.log(process.env.NEXT_PUBLIC_MY_WEBSITE_URL);
             const response = await fetch(`${process.env.NEXT_PUBLIC_MY_WEBSITE_URL}/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
