@@ -1,0 +1,64 @@
+---
+    title: タグ付きテンプレートリテラル
+    summary: タグ付きテンプレートリテラルはテンプレートリテラルの拡張機能です。
+    image: /images/posts/taggedTemplates.svg
+    publishedAt: '2025-05-25'
+---
+
+## まずは**テンプレートリテラル**について 話しましょう 
+<br/>
+テンプレートリテラルはES6に導入された文字列操作の機能です。JavaScript内でテンプレートリテラルを記述するには、バッククォート(`)を使います。
+これを使うことで、複数行文字列、埋め込み式、文字列の操作など簡単に行えるようになります。
+<br/>
+テンプレトリテラルの使いかた：
+<br/>
+```javascript
+    const user = "アダム";
+    const message1 = "ようこそ、" + user + "様"; //　これは普通の書き方です
+    const message2 = `ようこそ、${user}様`; //　これはテンプレトリテラルを使った例文です
+    const message3 = `今日がいい天気ですね。
+                    本を読むにはぴったりです。
+                    `;　//　複数行文字列を使ったテンプレトリテラル
+    console.log(message1);
+    console.log(message2);
+    console.log(message3);
+```
+<br/>
+テンプレートリテラルは普段から使ってるんですが、今日は「タグ付きテンプレートリテラル」というものを初めて知りました。
+<br/>
+# タグ付きテンプレートリテラル
+<br/>
+タグ付きテンプレートリテラルはテンプレートリテラルの拡張機能です。タグを使うことで、テンプレートリテラルを関数で処理することができます。タグ関数の第一引数は文字列の配列で、それ以外の引数全ては式の値です。これらの引数に対して任意の処理を行い、加工した文字列を返すことができます。
+例文をみましょう：
+<br/>
+```javascript
+    function person(strArr, username, today){
+        let result = strArr[0] + username + strArr[1] + today;
+        return result;
+    }
+    const username = `ジョーン`;
+    const today = `土曜日`;
+    console.log(person`ようこそ、${username}様。今日は${today}です。`);
+```
+<br/>
+上の例文を理解しましょう。```「ようこそ」、「様」、「今日」、「です。」```は第一引数の配列として渡され、変数```username、today```は式の値として扱われます。
+簡単に説明すると、```person```関数の引数は次のように解釈されます：
+<br/>
+```javascript
+    strArr -> [ようこそ, 様, 今日, です。];
+    username -> ${username}
+    today -> ${today}
+```
+<br/>
+引数は何枚いるのかわからない場合は、こやって使えます：
+<br/>
+```javascript
+    function person(strArr, ...values){　//　values -> [username, today]
+        const result = values.reduce((accumulator, val, index) => {
+        	return accumulator + val + strArr[index + 1]; // strArr 配列は、常に values 配列より 一つ多く要素を持ちます。
+        }, strArr[0]);
+        return result;
+    }
+```
+<br/>
+最後まで読んでいただきありがとうございます。ご質問やご指摘があれば、ぜひコメントで教えてください！

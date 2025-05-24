@@ -1,0 +1,70 @@
+---
+    title: Tagged Template Literals
+    summary: Tagged template literals are an advanced feature of template literals.  
+    image: /images/posts/taggedTemplates.svg
+    publishedAt: '2025-05-25'
+---
+## First, Let's Talk About **Template Literals**
+<br/>
+Template literals are a string manipulation feature introduced in ES6. To write a template literal in JavaScript, you use backticks (`` ` ``). By using them, it becomes easy to write multi-line strings, embed expressions, and manipulate strings.
+<br/>
+How to use template literals:
+<br/>
+```javascript
+    const user = "Adam";
+    const message1 = "Welcome, " + user + " san"; // This is the traditional way
+    const message2 = `Welcome, ${user} san`; // Using a template literal
+    const message3 = `The weather is nice today.
+    Perfect for reading a book.
+    `; // Multi-line template literal
+    console.log(message1);
+    console.log(message2);
+    console.log(message3);
+```
+<br/>
+I've used template literals often, but today I came across something new: Tagged Template Literals.
+<br/>
+# **Tagged Template Literals**
+<br/>
+Tagged template literals are an extension of template literals.
+By using a tag (a function), you can process the contents of a template literal.
+
+The first argument to the tag function is an array of strings. The remaining arguments are the values of the embedded expressions.
+You can apply custom processing to these arguments and return a modified string.
+<br/>
+Example:
+<br/>
+```javascript
+    function person(strArr, username, today){
+        let result = strArr[0] + username + strArr[1] + today;
+        return result;
+    }
+    const username = `Joan`;
+    const today = `Saturday`;
+    console.log(person`Welcome, ${username} san. Today is ${today}.`);
+```
+<br/>
+Let’s break it down.
+The strings "Welcome", " san. Today is ", and "." are passed as an array in the first argument (strArr),
+while username and today are passed as the rest of the arguments.
+
+Simply put, the arguments to the person function are interpreted as follows:
+<br/>
+```javascript
+    strArr -> ["Welcome, ", " san. Today is ", "."];
+    username -> ${username}
+    today -> ${today}
+```
+<br/>
+If you’re not sure how many arguments will be passed, you can handle it like this:
+<br/>
+```javascript
+    function person(strArr, ...values) { // values -> [username, today]
+        const result = values.reduce((accumulator, val, index) => {
+            return accumulator + val + strArr[index + 1]; // strArr always has one element more than the values array
+        }, strArr[0]);
+        return result;
+    }
+```
+<br/>
+Thanks for reading! :)
