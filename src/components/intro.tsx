@@ -34,6 +34,7 @@ export default function Intro() {
           width={175}
           height={175}
           priority
+          unoptimized
         />
       </div>
     </section>
