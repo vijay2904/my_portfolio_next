@@ -6,64 +6,48 @@
 ---
 
 # **Docusign JWT Access token in Node.js with refresh functionality**
-<br/>
 
 1. **Prerequisites**
-- DocuSign Developer Account
-- Application Integration Key
-- RSA key
-
-<br/>
+  - DocuSign Developer Account
+  - Application Integration Key
+  - RSA key
 
 2. **Install Dependency**
-<br/>
 
 ```
 npm install docusign-esign
 ```
-<br/>
 
 3. **Environment Configuration**
-<br/>
 
 Add the following keys to .env file:
-<br/>
 
 ```
 INTEGRATION KEY=your_application_integration_key
 BASE PATH=https://demo.docusign.net/restapi
 ```
-<br/>
 
 **Note:**
-<br/>
 
 - **Integration key:**
 #### can be obtained in your developer account from the Apps and Keys page.
-<br/>
 
 - **Base path:**
 #### To use either JWT Grant function, you need to use an SDK ApiClient object. To create an ApiClient object, you need to provide a base path. Since the application's correct base path is not yet known, use placeholder values to indicate which system should be queried:
-<br/>
 
     ```
     https://demo.docusign.net/restapi #development
     https://www.docusign.net/restapi #production
     ```
-<br/>
 
 4. **Store the RSA key securely.**
-<br/>
 
 - **RSA private key:**
 #### This is for the integration key you obtained above and can also be created on the Apps and Keys page. You only need the private key, and it can only be copied once. Make sure to retain it for your records.
-<br/>
 
 # Code Implementation
-<br/>
 
 1. Create a new class to implement token storage and refresh functionality for DocuSign JWT authentication:
-<br/>
 
 ```
 // DocuSignTokenManager.ts
@@ -113,10 +97,8 @@ class DocuSignTokenManager {
   }
 }
 ```
-<br/>
 
 2. Add a route handler
-<br/>
 
 ```
 const DocuSignTokenManager = require('./docuSignTokenManager');
@@ -140,13 +122,10 @@ app.get('/docusignAuthkey', async (req, res) => {
   }
 });
 ```
-<br/>
 
 # Testing
-<br/>
 
 1. Start the Server
-<br/>
 
 2. Send Test Request to the server using Postman with all the required authorization and credentials.
 ```
